@@ -7,6 +7,10 @@
 
 Приведите получившуюся команду или docker-compose-манифест.
 
+![1](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/1.JPG)
+
+![2](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/2.JPG)
+
 ## Задача 2
 
 В БД из задачи 1: 
@@ -16,6 +20,8 @@
 - предоставьте привилегии на все операции пользователю test-admin-user на таблицы БД test_db;
 - создайте пользователя test-simple-user;
 - предоставьте пользователю test-simple-user права на SELECT/INSERT/UPDATE/DELETE этих таблиц БД test_db.
+
+![3](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/3.JPG)
 
 Таблица orders:
 
@@ -30,12 +36,24 @@
 - страна проживания (string, index);
 - заказ (foreign key orders).
 
+![4](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/4.JPG)
+
 Приведите:
 
 - итоговый список БД после выполнения пунктов выше;
 - описание таблиц (describe);
 - SQL-запрос для выдачи списка пользователей с правами над таблицами test_db;
 - список пользователей с правами над таблицами test_db.
+
+![5](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/5.JPG)
+
+![6](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/6.JPG)
+
+![7](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/7.JPG)
+
+![8](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/8.JPG)
+
+
 
 ## Задача 3
 
@@ -69,6 +87,10 @@
     - запросы,
     - результаты их выполнения.
 
+![9](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/9.JPG)
+
+![10](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/10.JPG)
+
 ## Задача 4
 
 Часть пользователей из таблицы clients решили оформить заказы из таблицы orders.
@@ -87,12 +109,24 @@
  
 Подсказка: используйте директиву `UPDATE`.
 
+![11](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/11.JPG)
+
 ## Задача 5
 
 Получите полную информацию по выполнению запроса выдачи всех пользователей из задачи 4 
 (используя директиву EXPLAIN).
 
 Приведите получившийся результат и объясните, что значат полученные значения.
+
+![12](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/12.JPG)
+
+Данные читаются последовательно из тьаблицы clients  
+0.00 - стоимость получения первого значения  
+18.10 - стоимость получения всех значений  
+rows - колличество строк  
+width - средний размер строк в байтах  
+Использовался фильтр по условию "заказ" IS NOT NULL
+
 
 ## Задача 6
 
@@ -106,4 +140,13 @@
 
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 
+![13](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/13.JPG)
+
+![14](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/14.JPG)
+
+![16](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/16.JPG)
+
+![17](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/17.JPG)
+
+![18](https://github.com/MrAgrippa/06-db/blob/main/img/06-02/18.JPG)
 
