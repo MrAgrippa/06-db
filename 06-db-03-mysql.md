@@ -18,6 +18,14 @@
 
 В следующих заданиях мы будем продолжать работу с этим контейнером.
 
+![1](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/1.JPG)
+
+![2](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/2.JPG)
+
+![3](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/3.JPG)
+
+![4](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/4.JPG)
+
 ## Задача 2
 
 Создайте пользователя test в БД c паролем test-pass, используя:
@@ -34,6 +42,12 @@
 
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES, получите данные по пользователю test и приведите в ответе к задаче.
 
+![5](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/5.JPG)
+
+![6](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/6.JPG)
+
+![7](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/7.JPG)
+
 ## Задача 3
 
 Установите профилирование SET profiling = 1. Изучите вывод профилирования команд SHOW PROFILES;.
@@ -44,6 +58,12 @@
 
     на MyISAM,
     на InnoDB.
+
+![8](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/8.JPG)    
+
+![9](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/9.JPG)
+
+![10](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/10.JPG)
 
 ## Задача 4
 
@@ -57,5 +77,6 @@
     буффер кеширования 30% от ОЗУ;
     размер файла логов операций 100 Мб.
 
-Приведите в ответе изменённый файл my.cnf.
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
+Приведите в ответе изменённый файл my.cnf
+
+![11](https://github.com/MrAgrippa/06-db/blob/main/img/06-03/11.JPG)
