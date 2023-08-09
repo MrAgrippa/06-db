@@ -63,6 +63,7 @@
 Можно было исключить ручное разбиение: 
 
 ```sql CREATE RULE orders_insert_to_more AS ON INSERT TO orders WHERE ( price > 499 ) DO INSTEAD INSERT INTO orders_more_499_price VALUES (NEW.*);
+
 CREATE RULE orders_insert_to_less AS ON INSERT TO orders WHERE ( price <= 499 ) DO INSTEAD INSERT INTO orders_less_499_price VALUES (NEW.*);
 ```  
 
@@ -70,8 +71,17 @@ CREATE RULE orders_insert_to_less AS ON INSERT TO orders WHERE ( price <= 499 ) 
 
 Используя утилиту pg_dump, создайте бекап БД test_database.
 
-Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца title для таблиц test_database?
-
 ![4.1](https://github.com/MrAgrippa/06-db/blob/main/img/06-04/4.1.JPG)
 
+Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца title для таблиц test_database?
+
+Добавить ограничение UNIQUE
+
+```sql
+    CREATE TABLE public.orders (
+    id integer NOT NULL,
+    title character varying(80) NOT NULL UNIQUE,
+    price integer DEFAULT 0
+);
+```
 
