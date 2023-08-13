@@ -54,7 +54,7 @@
 
 Запускаю образ
 
-    root@timohin:/home/timohin/netology# docker run -d -p 9200:9200 bbb8c2e28d7d/elastic:8.6.2
+    root@timohin:/home/timohin/netology# docker run -d -p 9200:9200 mragrippa/netology-elastic:1
     afcd6b108c79f27720fc311f0544d4df6b826c4c1bd3a6389818a21774bb23ad 
 
 Проверка работы образа:
