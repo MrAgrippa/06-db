@@ -1,5 +1,6 @@
 # Домашнее задание к занятию 5. «Elasticsearch» - Тимохин Максим
-Задача 1
+
+## Задача 1
 
 В этом задании вы потренируетесь в:
 
@@ -30,6 +31,54 @@
     при сетевых проблемах внимательно изучите кластерные и сетевые настройки в elasticsearch.yml,
     при некоторых проблемах вам поможет Docker-директива ulimit,
     Elasticsearch в логах обычно описывает проблему и пути её решения.
+
+Ответ: 
+
+    root@timohin:/home/timohin/netology# DOCKER_BUILDKIT=0 docker build -t mragrippa/netology-elastic:1 .  
+
+    Successfully built a8a910ae5ed7  
+    Successfully tagged mragrippa/netology-elastic:1
+
+    root@timohin:/home/timohin/netology# sudo docker push mragrippa/netology-elastic:1
+    The push refers to repository [docker.io/mragrippa/netology-elastic]
+    61927a2c4779: Pushed
+    843f74087540: Pushed
+    2b4d6f940fa4: Pushed
+    6758c1776d18: Pushed
+    2964648e072e: Pushed
+    e5d5b907d324: Pushed
+    c41972607388: Pushed
+    7fdca66891b8: Pushed
+    174f56854903: Mounted from library/centos
+    8.6.2: digest: sha256:2b18cd754a5854502df075f78c6381246b23745b00be31856cb38f9c96                                c06f45 size: 2204
+
+Запускаю образ
+
+    root@timohin:/home/timohin/netology# docker run -d -p 9200:9200 bbb8c2e28d7d/elastic:8.6.2
+    afcd6b108c79f27720fc311f0544d4df6b826c4c1bd3a6389818a21774bb23ad 
+
+Проверка работы образа:
+
+     root@timohin:/home/timohin/netology# curl -X GET 'http://localhost:9200/'
+    {
+      "name" : "netology_test",
+      "cluster_name" : "netology",
+      "cluster_uuid" : "pEd13WyWRYatfW_4cYvVhQ",
+      "version" : {
+        "number" : "8.6.2",
+        "build_flavor" : "default",
+        "build_type" : "tar",
+        "build_hash" : "2d58d0f136141f03239816a4e360a8d17b6d8f29",
+        "build_date" : "2023-08-13T08:31:20.314882762Z",
+        "build_snapshot" : false,
+        "lucene_version" : "9.4.2",
+        "minimum_wire_compatibility_version" : "7.17.0",
+        "minimum_index_compatibility_version" : "7.0.0"
+      },
+      "tagline" : "You Know, for Search"
+    }
+
+
 
 Далее мы будем работать с этим экземпляром Elasticsearch.
 Задача 2
