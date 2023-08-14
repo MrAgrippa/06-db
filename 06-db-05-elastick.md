@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 5. «Elasticsearch» - Тимохин Максим
+![изображение](https://github.com/MrAgrippa/06-db/assets/106063944/f3f4797b-4149-4ebd-8ff0-889f3a821b4f)# Домашнее задание к занятию 5. «Elasticsearch» - Тимохин Максим
 
 ## Задача 1
 
@@ -32,7 +32,9 @@
     при некоторых проблемах вам поможет Docker-директива ulimit,
     Elasticsearch в логах обычно описывает проблему и пути её решения.
 
-Ответ: 
+### Ответ: 
+
+Ссылка на Докер Хаб https://hub.docker.com/r/mragrippa/netology-elastic
 
     root@timohin:/home/timohin/netology# DOCKER_BUILDKIT=0 docker build -t mragrippa/netology-elastic:1 .  
 
@@ -59,7 +61,7 @@
 
 Проверка работы образа:
 
-     root@timohin:/home/timohin/netology# curl -X GET 'http://localhost:9200/'
+     root@timohin:/home/timohin/netology# curl -X GET --insecure -u elastic:elastic 'http://localhost:9200/'
     {
       "name" : "netology_test",
       "cluster_name" : "netology",
@@ -79,9 +81,6 @@
     }
 
 
-
-Далее мы будем работать с этим экземпляром Elasticsearch.
-
 ## Задача 2
 
 В этом задании вы научитесь:
@@ -96,7 +95,7 @@ ind-1 	0 	1
 ind-2 	1 	2
 ind-3 	2 	4
 
-Ответ:
+### Ответ:
 
     root@timohin:/home/timohin/netology# curl -X PUT localhost:9200/ind-1 -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
     {"acknowledged":true,"shards_acknowledged":true,"index":"ind-1"}                                                                           
@@ -107,8 +106,9 @@ ind-3 	2 	4
 
 Получите список индексов и их статусов, используя API, и приведите в ответе на задание.
 
-Ответ: 
-        root@timohin:/home/timohin/netology# curl -X GET 'http://localhost:9200/_cat/indices?v'
+### Ответ: 
+
+    root@timohin:/home/timohin/netology# curl -X GET --insecure -u elastic:elastic 'http://localhost:9200/_cat/indices?v'
     health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
     green  open   ind-1 JuepGy90SCWQLm0YXfBH5A   1   0          0            0       225b           225b
     yellow open   ind-3 TIrNoEHvTVmbM7v-UlYAUw   4   2          0            0       900b           900b
@@ -116,23 +116,44 @@ ind-3 	2 	4
 
 Получите состояние кластера Elasticsearch, используя API.
 
+### Ответ: 
+
+    root@timohin:/home/timohin/netology# curl -X GET --insecure -u elastic:elastic "https://localhost:9200/_cluster/health?pretty"
+    {
+      "cluster_name" : "elasticsearch",
+      "status" : "yellow",
+      "timed_out" : false,
+      "number_of_nodes" : 1,
+      "number_of_data_nodes" : 1,
+      "active_primary_shards" : 7,
+      "active_shards" : 7,
+      "relocating_shards" : 0,
+      "initializing_shards" : 0,
+      "unassigned_shards" : 10,
+      "delayed_unassigned_shards" : 0,
+      "number_of_pending_tasks" : 0,
+      "number_of_in_flight_fetch" : 0,
+      "task_max_waiting_in_queue_millis" : 0,
+      "active_shards_percent_as_number" : 41.17647058823529
+    }
+
 Как вы думаете, почему часть индексов и кластер находятся в состоянии yellow?
 
+### Ответ: при создании индексов было указано количество реплик больше 1. В кластере 1 нода, поэтому реплицировать индексы некуда.
+
 Удалите все индексы.
+
+### Ответ: 
+
+    root@timohin:/home/timohin/netology# curl -X DELETE --insecure -u elastic:elastic "https://localhost:9200/ind-1?pretty"
+    root@timohin:/home/timohin/netology# curl -X DELETE --insecure -u elastic:elastic "https://localhost:9200/ind-2?pretty"
+    root@timohin:/home/timohin/netology# curl -X DELETE --insecure -u elastic:elastic "https://localhost:9200/ind-3?pretty"
 
 Важно
 
 При проектировании кластера Elasticsearch нужно корректно рассчитывать количество реплик и шард, иначе возможна потеря данных индексов, вплоть до полной, при деградации системы.
 
-Ответ:
-
-    root@timohin:/home/timohin/netology# curl -X GET 'http://localhost:9200/_cat/indices?v'
-    health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
-    green  open   ind-1 JuepGy90SCWQLm0YXfBH5A   1   0          0            0       225b           225b
-    yellow open   ind-3 TIrNoEHvTVmbM7v-UlYAUw   4   2          0            0       900b           900b
-    yellow open   ind-2 84179rCxR1u0E8YgUOpaAQ   2   1          0            0       450b           450b
-
-Задача 3
+## Задача 3
 
 В этом задании вы научитесь:
 
@@ -145,18 +166,101 @@ ind-3 	2 	4
 
 Приведите в ответе запрос API и результат вызова API для создания репозитория.
 
+### Ответ: 
+
+    root@timohin:/home/timohin/netology# curl -X PUT --insecure -u elastic:elastic "https://localhost:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d'
+    ",
+      "settings": {
+        "location": "/opt/elasticsearch-8.2.0/snapshots"
+      }
+    }
+    '
+    {
+       "type": "fs",
+       "settings": {
+         "location": "/opt/elasticsearch-8.2.0/snapshots"
+       }
+    }
+    
+    {
+      "acknowledged" : true
+    }
+
 Создайте индекс test с 0 реплик и 1 шардом и приведите в ответе список индексов.
+
+### Ответ: 
+
+    root@timohin:/home/timohin/netology# curl -X PUT localhost:9200/test -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
+    {"acknowledged":true,"shards_acknowledged":true,"index":"test"}
+    
+    root@timohin:/home/timohin/netology# curl -X GET 'http://localhost:9200/test?pretty'
+    {
+      "test" : {
+        "aliases" : { },
+        "mappings" : { },
+        "settings" : {
+          "index" : {
+            "routing" : {
+              "allocation" : {
+                "include" : {
+                  "_tier_preference" : "data_content"
+                }
+              }
+            },
+            "number_of_shards" : "1",
+            "provided_name" : "test",
+            "creation_date" : "1678015657730",
+            "number_of_replicas" : "0",
+            "uuid" : "kwg5tgqdRQCy-x18jYFfWw",
+            "version" : {
+              "created" : "8060299"
+            }
+          }
+        }
+      }
+    }
 
 Создайте snapshot состояния кластера Elasticsearch.
 
+### Ответ:
+
+    root@timohin:/home/timohin/netology# curl -X PUT localhost:9200/_snapshot/netology_backup/elasticsearch?wait_for_completion=true
+
 Приведите в ответе список файлов в директории со snapshot.
 
+### Ответ:
+
+    [elasticsearch@fe18b5f27b80 snapshots]$ ll
+    total 36
+    -rw-r--r-- 1 elasticsearch elasticsearch  1107 Aug 13 11:55 index-0
+    -rw-r--r-- 1 elasticsearch elasticsearch     8 Aug 13 11:55 index.latest
+    drwxr-xr-x 5 elasticsearch elasticsearch  4096 Aug 13 11:55 indices
+    -rw-r--r-- 1 elasticsearch elasticsearch 16595 Aug 13 11:55 meta-y1W7p4kFTO2S7PM8rZ75AQ.dat
+    -rw-r--r-- 1 elasticsearch elasticsearch   401 Aug 13 11:55 snap-y1W7p4kFTO2S7PM8rZ75AQ.dat
+
 Удалите индекс test и создайте индекс test-2. Приведите в ответе список индексов.
+
+### Ответ:
+
+    root@timohin:/home/timohin/netology# curl -X PUT localhost:9200/test-2?pretty -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
+    {
+      "acknowledged" : true,
+      "shards_acknowledged" : true,
+      "index" : "test-2"
+    }
 
 Восстановите состояние кластера Elasticsearch из snapshot, созданного ранее.
 
 Приведите в ответе запрос к API восстановления и итоговый список индексов.
 
-Подсказки:
+### Ответ:
 
-    возможно, вам понадобится доработать elasticsearch.yml в части директивы path.repo и перезапустить Elasticsearch.
+    root@timohin:/home/timohin/netology# curl -X POST localhost:9200/_snapshot/netology_backup/elasticsearch/_restore?pretty -H 'Content-Type: application/json' -d'{"include_global_state":true}'
+    {
+      "accepted" : true
+    }
+    
+    root@timohin:/home/timohin/netology# curl -X GET http://localhost:9200/_cat/indices?v
+    health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+    green  open   test-2 3tb_oimsQ8aUk_gfKHpakw   1   0          0            0       225b           225b
+    green  open   test   _aECYtWmQUeTgJAMnN-_wg   1   0          0            0       225b           225b
