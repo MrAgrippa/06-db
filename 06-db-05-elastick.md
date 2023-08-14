@@ -36,6 +36,10 @@
 
 Ссылка на Докер Хаб https://hub.docker.com/r/mragrippa/netology-elastic
 
+Dockerfile https://github.com/MrAgrippa/06-db/blob/main/img/Dockerfile
+
+Elasticsearch.yml https://github.com/MrAgrippa/06-db/blob/main/img/elasticsearch.yml
+
     root@timohin:/home/timohin/netology# DOCKER_BUILDKIT=0 docker build -t mragrippa/netology-elastic:1 .  
 
     Successfully built a8a910ae5ed7  
