@@ -81,7 +81,8 @@
 
 
 Далее мы будем работать с этим экземпляром Elasticsearch.
-Задача 2
+
+## Задача 2
 
 В этом задании вы научитесь:
 
@@ -95,7 +96,23 @@ ind-1 	0 	1
 ind-2 	1 	2
 ind-3 	2 	4
 
+Ответ:
+
+    root@timohin:/home/timohin/netology# curl -X PUT localhost:9200/ind-1 -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
+    {"acknowledged":true,"shards_acknowledged":true,"index":"ind-1"}                                                                           
+    root@timohin:/home/timohin/netology# curl -X PUT localhost:9200/ind-2 -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 2,  "number_of_replicas": 1 }}'
+    {"acknowledged":true,"shards_acknowledged":true,"index":"ind-2"}                                                                           
+    root@timohin:/home/timohin/netology# curl -X PUT localhost:9200/ind-3 -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 4,  "number_of_replicas": 2 }}'
+    {"acknowledged":true,"shards_acknowledged":true,"index":"ind-3"} 
+
 Получите список индексов и их статусов, используя API, и приведите в ответе на задание.
+
+Ответ: 
+        root@timohin:/home/timohin/netology# curl -X GET 'http://localhost:9200/_cat/indices?v'
+    health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+    green  open   ind-1 JuepGy90SCWQLm0YXfBH5A   1   0          0            0       225b           225b
+    yellow open   ind-3 TIrNoEHvTVmbM7v-UlYAUw   4   2          0            0       900b           900b
+    yellow open   ind-2 84179rCxR1u0E8YgUOpaAQ   2   1          0            0       450b           450b
 
 Получите состояние кластера Elasticsearch, используя API.
 
@@ -106,6 +123,15 @@ ind-3 	2 	4
 Важно
 
 При проектировании кластера Elasticsearch нужно корректно рассчитывать количество реплик и шард, иначе возможна потеря данных индексов, вплоть до полной, при деградации системы.
+
+Ответ:
+
+    root@timohin:/home/timohin/netology# curl -X GET 'http://localhost:9200/_cat/indices?v'
+    health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+    green  open   ind-1 JuepGy90SCWQLm0YXfBH5A   1   0          0            0       225b           225b
+    yellow open   ind-3 TIrNoEHvTVmbM7v-UlYAUw   4   2          0            0       900b           900b
+    yellow open   ind-2 84179rCxR1u0E8YgUOpaAQ   2   1          0            0       450b           450b
+
 Задача 3
 
 В этом задании вы научитесь:
