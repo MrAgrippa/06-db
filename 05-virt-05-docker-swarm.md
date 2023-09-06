@@ -42,3 +42,5 @@ docker node ls
 docker service ls
 
 ![2](https://github.com/MrAgrippa/06-db/blob/main/img/05-05/2.JPG)
+
+![3](https://github.com/MrAgrippa/06-db/blob/main/img/05-05/3.JPG)
