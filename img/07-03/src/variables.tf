@@ -30,3 +30,25 @@ variable "vpc_name" {
   default 	= "develop"
   description = "VPC network&subnet name"
 }
+
+variable "vm_resources" {
+  type     = map(sting)
+  default  = {vm_web_cores = "2", vm_web_memory = "1", vm_web_core_fraction = "20"}
+}
+
+variable "vm_platform" {
+  type = string
+  default = "standard-v1"
+}
+
+variable "vm_count" {
+  type = string
+  default = "2"
+}
+
+variable "vm_boot_disk" {
+  type = map(string)
+  default = {vm_boot_disk_type = "network-hdd", vm_boot_disk_size = "5"}
+}
+
+
