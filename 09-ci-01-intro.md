@@ -12,7 +12,7 @@
 6. On test -> On fix, Done.
 7. Done -> Closed, Open.
 
-![1]()
+![1](https://github.com/MrAgrippa/06-db/blob/main/img/09-01/1.jpg)
 
 Остальные задачи должны проходить по упрощённому workflow:
 
@@ -22,7 +22,7 @@
 4. On test -> On develop, Done.
 5. Done -> Closed, Open.
 
-![2]()
+![2](https://github.com/MrAgrippa/06-db/blob/main/img/09-01/2.jpg)
 
 ### Что нужно сделать
 
@@ -32,6 +32,6 @@
 4. Верните задачи в статус Open.
 5. Перейдите в Scrum, запланируйте новый спринт, состоящий из задач эпика и одного бага, стартуйте спринт, проведите задачи до состояния Closed. Закройте спринт.
 
-![3]()
+![3](https://github.com/MrAgrippa/06-db/blob/main/img/09-01/3.jpg)
 
-6. Если всё отработалось в рамках ожидания — выгрузите схемы workflow для импорта в XML. [Файлы с workflow]() и скриншоты workflow приложите к решению задания.
+6. Если всё отработалось в рамках ожидания — выгрузите схемы workflow для импорта в XML. [Файлы с workflow](https://github.com/MrAgrippa/06-db/blob/main/img/09-01/) и скриншоты workflow приложите к решению задания.
