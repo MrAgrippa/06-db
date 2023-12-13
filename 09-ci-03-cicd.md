@@ -325,12 +325,13 @@ INFO: ------------------------------------------------------------------------
 
 6. Посмотрите результат в интерфейсе.
 
-![1]()
+![1](https://github.com/MrAgrippa/06-db/blob/main/img/09-03/1.PNG)
+![2](https://github.com/MrAgrippa/06-db/blob/main/img/09-03/2.PNG)
 
 7. Исправьте ошибки, которые он выявил, включая warnings.
 8. Запустите анализатор повторно — проверьте, что QG пройдены успешно.
 
-![2]()
+![3](https://github.com/MrAgrippa/06-db/blob/main/img/09-03/3.PNG)
 
 9. Сделайте скриншот успешного прохождения анализа, приложите к решению ДЗ.
 
@@ -349,7 +350,7 @@ INFO: ------------------------------------------------------------------------
 3. Проверьте, что все файлы загрузились успешно.
 4. В ответе пришлите файл maven-metadata.xml для этого артефекта.
 
-[maven-metadata.xml]()
+[maven-metadata.xml](https://github.com/MrAgrippa/06-db/blob/main/img/09-03/infrastructure/files/maven-metadata.xml)
 
 ### Знакомство с Maven
 
@@ -404,4 +405,4 @@ total 16
 ```
 4. В ответе пришлите исправленный файл pom.xml.
 
-[pom.xml]()
+[pom.xml](https://github.com/MrAgrippa/06-db/blob/main/img/09-03/pom.xml)
